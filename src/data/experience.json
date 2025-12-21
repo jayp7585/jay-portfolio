@@ -1,0 +1,32 @@
+[
+  {
+    "role": "Web Development Intern",
+    "company": "Green Hightech",
+    "duration": "Jan 2025 – Present",
+    "description": [
+      "Working on website development using PHP and MySQL.",
+      "Developing responsive UI and improving existing web pages.",
+      "Learning real-world project workflow and deployment process."
+    ]
+  },
+  {
+    "company": "J & K Cafe & Restro",
+    "role": "PHP Developer",
+    "description": "Restaurant management system with authentication, ordering, admin panel, and notifications.",
+    "tech": [
+      "PHP",
+      "MySQL",
+      "Bootstrap"
+    ]
+  },
+  {
+    "company": "GetBus",
+    "role": "Backend Developer",
+    "description": "Bus booking system with ticket management and payment gateway.",
+    "tech": [
+      "PHP",
+      "MySQL",
+      "Cashfree"
+    ]
+  }
+]
