@@ -96,18 +96,22 @@ export default function Hero() {
 
           {/* Resume button */}
           <a
-            href={profile.resume}
-            download
-            className="inline-block mt-8 px-7 py-3
-              rounded-full text-sm sm:text-base
-              bg-purple-600/30 border border-purple-400/40
-              text-white font-medium backdrop-blur-md
-              hover:bg-purple-600/50
-              hover:shadow-[0_0_30px_rgba(168,85,247,0.7)]
-              transition"
-          >
-            Download Resume
-          </a>
+  href="/jay-portfolio/resume.pdf"
+  download="Jay_Panchal_Resume.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="
+    inline-block mt-8 px-7 py-3
+    rounded-full text-sm sm:text-base
+    bg-purple-600/30 border border-purple-400/40
+    text-white font-medium backdrop-blur-md
+    hover:bg-purple-600/50
+    hover:shadow-[0_0_30px_rgba(168,85,247,0.7)]
+    transition
+  "
+>
+  Download Resume
+</a>
         </div>
       </div>
     </section>
