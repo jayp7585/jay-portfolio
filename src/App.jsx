@@ -1,25 +1,33 @@
+import Navbar from "./components/Navbar"
 import Hero from "./components/Hero"
+import Projects from "./components/Projects"
 import WorkExperience from "./components/WorkExperience"
 import OrbitSkills from "./components/OrbitSkills"
-import Projects from "./components/Projects"
 import Footer from "./components/Footer"
-import Navbar from "./components/Navbar"
+import BackToTop from "./components/BackToTop"
 
+import BackgroundDots from "./components/BackgroundDots"
+import CursorGlow from "./components/CursorGlow"
 
-function App() {
+export default function App() {
   return (
-    <div
-      className="min-h-screen text-white
-      bg-[radial-gradient(ellipse_at_top,_#2b124c_0%,_#0b021a_45%,_#07010f_100%)]"
-    >
+    <div className="relative min-h-screen bg-[#07010f] text-white overflow-hidden">
+
+      {/* Background effects */}
+      <BackgroundDots />
+      <CursorGlow />
+
+      {/* UI */}
       <Navbar />
-      <Hero />
-      <WorkExperience />
-      <OrbitSkills />
-      <Projects />
-      <Footer />
+
+      <main className="relative z-10">
+        <Hero />
+        <WorkExperience />
+        <OrbitSkills />
+        <Projects />
+        <Footer />
+      </main>
+    <BackToTop />
     </div>
   )
 }
-
-export default App

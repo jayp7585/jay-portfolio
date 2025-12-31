@@ -1,16 +1,16 @@
 [
   {
     "title": "Restaurant Management System",
-    "description": "A web application for managing restaurant orders, staff, and admin operations with authentication and dashboard.",
+    "description": "A web application for managing restaurant operations.",
+    "image": "project1.png",
     "tech": ["PHP", "MySQL", "Bootstrap"],
-    "image": "/projects/project1.png",
     "link": "#"
   },
   {
-    "title": "Bus Booking System (GetBus)",
-    "description": "Online bus booking platform with seat selection, ticket booking, payments, and admin control.",
-    "tech": ["PHP", "MySQL", "Payment Gateway"],
-    "image": "/projects/project2.png",
+    "title": "Bus Booking System",
+    "description": "Online bus booking platform with admin panel.",
+    "image": "project2.png",
+    "tech": ["PHP", "MySQL"],
     "link": "#"
   }
 ]

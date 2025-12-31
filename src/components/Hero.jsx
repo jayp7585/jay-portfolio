@@ -20,114 +20,60 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="
-        relative
-        pt-28 sm:pt-32 md:pt-40
-        pb-20 md:pb-40
-        overflow-x-hidden
-      "
+      className="relative pt-32 md:pt-40 pb-32 overflow-hidden"
     >
-      {/* Background glow */}
-      <div className="absolute inset-0 flex justify-center pointer-events-none">
-        <div
-          className="
-            w-[280px] h-[280px]
-            sm:w-[360px] sm:h-[360px]
-            md:w-[520px] md:h-[520px]
-            bg-purple-700/30
-            rounded-full
-            blur-3xl
-          "
-        />
+      {/* soft hero glow */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="hero-glow" />
       </div>
 
-      {/* Content */}
-      <div
-        className="
-          relative z-10
-          max-w-6xl mx-auto
-          px-5 sm:px-6
-          flex flex-col md:flex-row
-          items-center
-          gap-10 md:gap-14
-        "
-      >
-        {/* Avatar */}
-        <div className="relative flex-shrink-0 animate-float mb-2 md:mb-0">
-          <div
-            className="
-              absolute inset-0
-              bg-purple-600/35
-              rounded-full
-              blur-2xl
-              scale-125
-            "
-          />
+      <div className="relative z-10 max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-14">
+        
+        {/* Avatar (NO ring, only soft glow) */}
+        <div className="relative">
+          <div className="avatar-glow" />
           <img
-            src={new URL("../assets/avatar.png", import.meta.url).href}
+            src="/jay-portfolio/public/avatar.png"
             alt="Avatar"
-            className="
-              relative
-              w-36 h-36
-              sm:w-44 sm:h-44
-              md:w-56 md:h-56
-              rounded-full
-              object-cover
-            "
+            className="relative w-40 h-40 md:w-56 md:h-56 object-cover rounded-xl"
           />
         </div>
 
         {/* Text */}
-        <div className="text-center md:text-left max-w-xl">
-          <p className="text-purple-400 mb-2 sm:mb-4">
+        <div className="max-w-xl text-center md:text-left">
+          <p className="text-purple-400 mb-2">
             Hello, I’m {profile.name}
           </p>
 
-          <h1
-            className="
-              text-3xl sm:text-4xl md:text-5xl
-              font-semibold
-              leading-tight
-            "
-          >
+          <h1 className="text-4xl md:text-5xl font-semibold leading-tight">
             {displayed.split(" ").map((word, i) =>
               word === "cover" ? (
-                <span
-                  key={i}
-                  className="
-                    text-purple-400
-                    drop-shadow-[0_0_12px_rgba(168,85,247,0.9)]
-                  "
-                >
+                <span key={i} className="text-purple-400 glow-text">
                   {" "}{word}
                 </span>
               ) : (
                 <span key={i}> {word}</span>
               )
             )}
-            <span className="animate-pulse text-purple-400">|</span>
+            <span className="text-purple-400 animate-pulse">|</span>
           </h1>
 
-          <h2 className="mt-6 sm:mt-8 text-lg sm:text-xl md:text-2xl font-bold">
+          <h2 className="mt-6 text-xl md:text-2xl font-bold">
             {profile.title}
           </h2>
 
-          <p className="mt-4 sm:mt-6 text-white/80 text-sm sm:text-base">
+          <p className="mt-4 text-white/80">
             {profile.intro}
           </p>
 
           <a
-            href={profile.resume}
-            download
-            className="inline-block mt-8 px-7 py-3
-              rounded-full text-sm sm:text-base
-              bg-purple-600/30 border border-purple-400/40
-              text-white font-medium backdrop-blur-md
-              hover:bg-purple-600/50
-              hover:shadow-[0_0_30px_rgba(168,85,247,0.7)]
-              transition"
+            href="https://drive.google.com/file/d/13GKWr9CE1fjt1FdjQQnpAJ3a120iDeZ0/view"
+            target="_blank"
+            className="inline-block mt-8 px-7 py-3 rounded-full
+              bg-white/10 border border-white/20
+              hover:bg-white/20 transition"
           >
-            Download Resume
+            View Resume
           </a>
         </div>
       </div>

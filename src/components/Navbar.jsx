@@ -1,5 +1,13 @@
 import { useState } from "react"
 
+const links = [
+  { name: "Home", id: "home" },
+  { name: "About", id: "about" },
+  { name: "Skills", id: "skills" },
+  { name: "Projects", id: "projects" },
+  { name: "Contact", id: "contact" },
+]
+
 export default function Navbar() {
   const [open, setOpen] = useState(false)
 
@@ -18,7 +26,7 @@ export default function Navbar() {
           "
         >
           {/* LOGO */}
-          <div className="px-5 py-4 flex items-center gap-2">
+          <a href="#home" className="px-5 py-4 flex items-center gap-2">
             <div
               className="
                 w-10 h-10 rounded-full
@@ -30,14 +38,14 @@ export default function Navbar() {
             >
               J
             </div>
-          </div>
+          </a>
 
           {/* DESKTOP MENU */}
           <nav className="hidden md:flex gap-10 px-10 py-4 text-sm">
-            {["Home", "About", "Projects", "Lab"].map((item) => (
+            {links.map(link => (
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
+                key={link.id}
+                href={`#${link.id}`}
                 className="
                   relative text-white/80 hover:text-white transition
                   after:absolute after:left-0 after:-bottom-1
@@ -45,20 +53,15 @@ export default function Navbar() {
                   hover:after:w-full after:transition-all
                 "
               >
-                {item}
+                {link.name}
               </a>
             ))}
           </nav>
 
-          {/* MOBILE MENU BUTTON */}
+          {/* MOBILE BUTTON */}
           <button
             onClick={() => setOpen(!open)}
-            className="
-              md:hidden
-              px-5 py-4
-              text-white
-              focus:outline-none
-            "
+            className="md:hidden px-5 py-4 text-white"
             aria-label="Toggle menu"
           >
             <div className="space-y-1.5">
@@ -69,24 +72,23 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* MOBILE DROPDOWN */}
+        {/* MOBILE MENU */}
         {open && (
           <div
             className="
-              mt-3
+              mt-3 md:hidden
               rounded-2xl
               bg-purple-900/80
               backdrop-blur-xl
               border border-white/10
               shadow-xl
-              md:hidden
               overflow-hidden
             "
           >
-            {["Home", "About", "Projects", "Lab"].map((item) => (
+            {links.map(link => (
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
+                key={link.id}
+                href={`#${link.id}`}
                 onClick={() => setOpen(false)}
                 className="
                   block px-6 py-4
@@ -95,7 +97,7 @@ export default function Navbar() {
                   transition
                 "
               >
-                {item}
+                {link.name}
               </a>
             ))}
           </div>
