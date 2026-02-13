@@ -77,7 +77,13 @@ export default function Hero() {
                 className={`absolute inset-4 rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl z-20 transition-all duration-1000 transform ${loaded ? "scale-100 opacity-100 rotate-0" : "scale-90 opacity-0 -rotate-6"}`}
               >
                 <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/20 to-pink-500/20 mix-blend-overlay z-10" />
-                <img src="./avatar.png" alt="Avatar" className="w-full h-full object-cover bg-[#0a0518]" />
+                <img
+                  src="./avatar.png"
+                  alt="Avatar"
+                  className="w-full h-full object-cover bg-[#0a0518]"
+                  width="500"
+                  height="500"
+                />
               </div>
 
               {/* Floating Elements (Parallax via CSS Animation) */}
