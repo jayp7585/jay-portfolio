@@ -16,26 +16,28 @@ export default function CenterLogo() {
         sm:w-[160px] sm:h-[160px]
         rounded-full border
         border-purple-400/30
+        border-t-transparent
         animate-spin-fast"></div>
 
       {/* Glow */}
       <div className="absolute
-        w-20 h-20
+        w-24 h-24
         bg-purple-600/40
-        rounded-full blur-2xl"></div>
+        rounded-full blur-3xl animate-pulse"></div>
 
       {/* J Logo */}
       <div className="relative
         w-16 h-16
         sm:w-20 sm:h-20
         rounded-full
-        bg-gradient-to-br
-        from-purple-500 to-purple-700
+        glass-card p-0
         flex items-center justify-center
         text-2xl sm:text-3xl
-        font-bold
-        shadow-[0_0_40px_#a855f7]">
-        J
+        font-bold font-heading
+        text-white
+        border border-purple-500/30
+        shadow-[0_0_40px_rgba(168,85,247,0.5)]">
+        JP
       </div>
     </div>
   )

@@ -1,109 +1,52 @@
-import { useEffect, useState } from "react"
-import skills from "../data/skills.json"
-import CenterLogo from "./CenterLogo"
+import { skills } from "../portfolio";
 
 export default function OrbitSkills() {
-  const isMobile = window.innerWidth < 640
-  const radius = isMobile ? 100 : 140
-  const size = isMobile ? 260 : 360
-  const center = size / 2
+  const { data, title, description } = skills;
 
-  const [angle, setAngle] = useState(0)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setAngle((prev) => prev + 0.3)
-    }, 16)
-    return () => clearInterval(interval)
-  }, [])
+  // Duplicate array for seamless loop
+  const row1 = [...data, ...data, ...data]
+  const row2 = [...data.reverse(), ...data, ...data]
 
   return (
-    <section
-      id="lab"
-      className="relative py-24 sm:py-32 flex items-center justify-center"
-    >
-      {/* Background glow */}
-      <div className="absolute w-[240px] h-[240px] sm:w-[300px] sm:h-[300px]
-        bg-purple-600/30 rounded-full blur-3xl"></div>
+    <section id="skills" className="relative py-24 overflow-hidden">
 
-      <CenterLogo />
-
-      {/* ORBIT CONTAINER */}
-      <div
-        className="relative"
-        style={{ width: size, height: size }}
-      >
-        {/* ================= SVG CONNECTORS ================= */}
-        <svg
-          width={size}
-          height={size}
-          className="absolute top-0 left-0"
-        >
-          {skills.map((_, index) => {
-            const angleOffset = (360 / skills.length) * index
-            const totalAngle = angle + angleOffset
-            const rad = (totalAngle * Math.PI) / 180
-
-            const x = center + radius * Math.cos(rad)
-            const y = center + radius * Math.sin(rad)
-
-            return (
-              <g key={index}>
-                {/* Line */}
-                <line
-                  x1={center}
-                  y1={center}
-                  x2={x}
-                  y2={y}
-                  stroke="rgba(168,85,247,0.35)"
-                  strokeWidth="1"
-                />
-
-                {/* Dot */}
-                <circle
-                  cx={x}
-                  cy={y}
-                  r="3"
-                  fill="rgba(168,85,247,0.9)"
-                />
-              </g>
-            )
-          })}
-        </svg>
-
-        {/* ================= SKILLS ================= */}
-        {skills.map((skill, index) => {
-          const angleOffset = (360 / skills.length) * index
-          const totalAngle = angle + angleOffset
-          const rad = (totalAngle * Math.PI) / 180
-
-          const x = radius * Math.cos(rad)
-          const y = radius * Math.sin(rad)
-
-          return (
-            <div
-              key={index}
-              className="absolute left-1/2 top-1/2
-              -translate-x-1/2 -translate-y-1/2"
-              style={{
-                transform: `translate(${x}px, ${y}px)`
-              }}
-            >
-              <div
-                className="px-3 py-1
-                text-xs sm:text-sm
-                rounded-full
-                bg-white/10 backdrop-blur-md
-                border border-white/20
-                hover:bg-purple-600/40
-                transition"
-              >
-                {skill}
-              </div>
-            </div>
-          )
-        })}
+      <div className="text-center mb-16">
+        <h2 className="text-3xl md:text-5xl font-bold font-heading mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+          {title}
+        </h2>
+        <p className="text-white/60">
+          {description}
+        </p>
       </div>
+
+      {/* GRADIENT MASKS */}
+      <div className="absolute inset-y-0 left-0 w-24 sm:w-48 bg-gradient-to-r from-[#07010f] to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-24 sm:w-48 bg-gradient-to-l from-[#07010f] to-transparent z-10 pointer-events-none" />
+
+      {/* ROW 1 */}
+      <div className="flex mb-8 w-max animate-marquee hover:[animation-play-state:paused]">
+        {row1.map((skill, i) => (
+          <div key={i} className="mx-3 group">
+            <div className="px-6 py-3 rounded-2xl bg-white/5 border border-white/5 text-white/80 font-medium whitespace-nowrap backdrop-blur-md group-hover:bg-purple-600/20 group-hover:border-purple-500/40 group-hover:text-white transition-colors duration-300 flex items-center gap-2 text-lg">
+              <span>{skill.icon || "💻"}</span>
+              {skill.name}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* ROW 2 */}
+      <div className="flex w-max animate-marquee-reverse hover:[animation-play-state:paused]">
+        {row2.map((skill, i) => (
+          <div key={i} className="mx-3 group">
+            <div className="px-6 py-3 rounded-2xl bg-white/5 border border-white/5 text-white/80 font-medium whitespace-nowrap backdrop-blur-md group-hover:bg-purple-600/20 group-hover:border-purple-500/40 group-hover:text-white transition-colors duration-300 flex items-center gap-2 text-lg">
+              <span>{skill.icon || "🔧"}</span>
+              {skill.name}
+            </div>
+          </div>
+        ))}
+      </div>
+
     </section>
   )
 }

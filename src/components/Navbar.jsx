@@ -1,108 +1,63 @@
-import { useState } from "react"
+import { useState, useEffect } from "react";
+import { Home, User, Briefcase, Code, Mail, Cpu } from "lucide-react";
 
-const links = [
-  { name: "Home", id: "home" },
-  { name: "About", id: "about" },
-  { name: "Skills", id: "skills" },
-  { name: "Projects", id: "projects" },
-  { name: "Contact", id: "contact" },
-]
+import { header } from "../portfolio";
+
+const { links } = header;
+
+const iconMap = {
+  Home: Home,
+  About: User,
+  Skills: Cpu,
+  Experience: Briefcase,
+  Projects: Code,
+  Contact: Mail,
+};
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div
-          className="
-            mt-3 sm:mt-4
-            flex items-center justify-between
-            rounded-2xl
-            bg-purple-900/60
-            backdrop-blur-xl
-            border border-white/10
-            shadow-[0_0_40px_rgba(168,85,247,0.2)]
-          "
-        >
-          {/* LOGO */}
-          <a href="#home" className="px-5 py-4 flex items-center gap-2">
-            <div
-              className="
-                w-10 h-10 rounded-full
-                bg-purple-600/30
-                flex items-center justify-center
-                text-lg font-bold
-                shadow-[0_0_20px_rgba(168,85,247,0.8)]
-              "
+    <header
+      className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center justify-center"
+    >
+      <div
+        className={`
+          flex items-center gap-2 px-4 py-3 rounded-2xl border transition-all duration-300
+          ${scrolled
+            ? "bg-white/10 backdrop-blur-xl border-white/10 shadow-2xl scale-100"
+            : "bg-white/5 backdrop-blur-lg border-white/5 scale-105"
+          }
+        `}
+      >
+        {links.map((link) => {
+          const Icon = iconMap[link.name] || Home;
+
+          return (
+            <a
+              key={link.name}
+              href={link.link}
+              className="relative group p-3 rounded-xl hover:bg-white/10 transition-all duration-300 hover:scale-125 hover:-translate-y-2"
+              aria-label={link.name}
             >
-              J
-            </div>
-          </a>
+              <Icon className="w-6 h-6 text-white/80 group-hover:text-white transition-colors" />
 
-          {/* DESKTOP MENU */}
-          <nav className="hidden md:flex gap-10 px-10 py-4 text-sm">
-            {links.map(link => (
-              <a
-                key={link.id}
-                href={`#${link.id}`}
-                className="
-                  relative text-white/80 hover:text-white transition
-                  after:absolute after:left-0 after:-bottom-1
-                  after:h-[2px] after:w-0 after:bg-purple-400
-                  hover:after:w-full after:transition-all
-                "
-              >
+              {/* Tooltip */}
+              <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-black/80 text-white text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
                 {link.name}
-              </a>
-            ))}
-          </nav>
-
-          {/* MOBILE BUTTON */}
-          <button
-            onClick={() => setOpen(!open)}
-            className="md:hidden px-5 py-4 text-white"
-            aria-label="Toggle menu"
-          >
-            <div className="space-y-1.5">
-              <span className="block w-6 h-[2px] bg-white"></span>
-              <span className="block w-6 h-[2px] bg-white"></span>
-              <span className="block w-6 h-[2px] bg-white"></span>
-            </div>
-          </button>
-        </div>
-
-        {/* MOBILE MENU */}
-        {open && (
-          <div
-            className="
-              mt-3 md:hidden
-              rounded-2xl
-              bg-purple-900/80
-              backdrop-blur-xl
-              border border-white/10
-              shadow-xl
-              overflow-hidden
-            "
-          >
-            {links.map(link => (
-              <a
-                key={link.id}
-                href={`#${link.id}`}
-                onClick={() => setOpen(false)}
-                className="
-                  block px-6 py-4
-                  text-white/90
-                  hover:bg-purple-600/20
-                  transition
-                "
-              >
-                {link.name}
-              </a>
-            ))}
-          </div>
-        )}
+              </span>
+            </a>
+          );
+        })}
       </div>
     </header>
-  )
+  );
 }
